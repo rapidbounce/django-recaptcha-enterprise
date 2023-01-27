@@ -19,4 +19,4 @@ jobs:
           python3 -m build
       - name: install twine
         run: |-
-          twine upload dist/* -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} -r django-recaptcha-enterprise
+          twine upload dist/* -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}
