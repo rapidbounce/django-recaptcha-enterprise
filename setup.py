@@ -12,8 +12,8 @@ install_requirements = [
 ]
 
 setup(
-    name='django-recaptcha-enterprise',
-    version='0.0.8',
+    name='captcha',
+    version='0.0.9',
     packages=find_packages(),
     install_requires=install_requirements,
     include_package_data=True,
