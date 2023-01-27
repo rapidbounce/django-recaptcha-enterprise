@@ -13,7 +13,7 @@ install_requirements = [
 
 setup(
     name='django-recaptcha-enterprise',
-    version='0.0.7',
+    version='0.0.8',
     packages=find_packages(),
     install_requires=install_requirements,
     include_package_data=True,
