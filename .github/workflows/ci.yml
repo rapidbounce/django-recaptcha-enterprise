@@ -11,12 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
       - name: build package
         run: |-
-          python3 -m pip install --upgrade twine build
+          python -m pip install --upgrade pip
+          pip install setuptools wheel twine
       - name: build package
         run: |-
-          python3 -m build
-      - name: install twine
-        run: |-
-          twine upload dist/* -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}
+          python setup.py sdist bdist_wheel
+          twine upload -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} -r django-recaptcha-enterprise dist/*
