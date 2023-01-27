@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # Include following apps for rapidbounce_cms to work
-    "pwa",
+    "captcha",
 ]
 
 MIDDLEWARE = [

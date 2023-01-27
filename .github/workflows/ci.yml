@@ -14,6 +14,9 @@ jobs:
       - name: build package
         run: |-
           python setup.py sdist
+      - name: build package
+        run: |-
+          python -m build
       - name: install twine
         run: |-
           pip install twine

@@ -7,7 +7,6 @@ authors = ["rapidbounce <customer.support@rapidbounce.co>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 Django = "^3.2"
-django-modeltranslation = "0.15.2"
 
 [tool.poetry.dev-dependencies]
 
