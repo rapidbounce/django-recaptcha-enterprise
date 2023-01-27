@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "rapidbounce-pwa"
+name = "django-recaptcha-enterprise"
 version = "0.3.0"
 description = ""
 authors = ["rapidbounce <customer.support@rapidbounce.co>"]

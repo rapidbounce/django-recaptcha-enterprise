@@ -13,7 +13,7 @@ install_requirements = [
 
 setup(
     name='django-recaptcha-enterprise',
-    version='0.0.1',
+    version='0.0.2',
     packages=find_packages(),
     install_requires=install_requirements,
     include_package_data=True,
@@ -21,7 +21,7 @@ setup(
     description=short_description,
     long_description=short_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/rapidbounce/rapidbounce-pwa',
+    url='https://github.com/rapidbounce/django-recaptcha-enterprise',
     author='Panagiotis Skarlas',
     author_email='devs@rapidbounce.co',
     classifiers=[
