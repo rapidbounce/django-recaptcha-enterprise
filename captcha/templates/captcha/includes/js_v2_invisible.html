@@ -1,0 +1,39 @@
+{# The provided implementation caters for only one reCAPTCHA on a page. Override this template and its logic as needed. #}
+<script type="text/javascript">
+window.addEventListener('load', function() {
+    var recaptchas = [].slice.call(document.querySelectorAll('.g-recaptcha[data-widget-uuid="{{ widget_uuid }}"]'));
+
+    var recaptchaObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                var lazyCaptcha = entry.target;
+                var script = document.createElement('script');
+                script.src = "https://{{ recaptcha_domain }}/recaptcha/enterprise.js{% if api_params %}?{{ api_params }}{% endif %}?hl=" + document.documentElement.lang;
+                document.body.appendChild(script);
+                recaptchaObserver.unobserve(lazyCaptcha);
+
+                // Submit function to be called, after reCAPTCHA was successful.
+                window.onSubmit_{{ widget_uuid }} = function(token) {
+                    console.log("reCAPTCHA validated for 'data-widget-uuid=\"{{ widget_uuid }}\"'. Submitting form...")
+                    document.querySelector('.g-recaptcha[data-widget-uuid="{{ widget_uuid }}"]').closest('form').submit();
+                }
+
+                // Helper function to prevent form submission and execute verification.
+                window.verifyCaptcha_{{ widget_uuid }} = function(e) {
+                    e.preventDefault();
+                    grecaptcha.enterprise.execute();
+                };
+
+
+                // Bind the helper function to the form submit action.
+                var element = document.querySelector('.g-recaptcha[data-widget-uuid="{{ widget_uuid }}"]');
+                element.closest('form').addEventListener('submit', window.verifyCaptcha_{{ widget_uuid}});
+            }
+        });
+        }, { rootMargin: "100px", threshold: 0 });
+
+    recaptchas.forEach(function (lazyCaptcha) {
+        recaptchaObserver.observe(lazyCaptcha);
+    });
+});
+</script>

@@ -1,0 +1,32 @@
+{# The provided implementation caters for only one reCAPTCHA on a page. Override this template and its logic as needed. #}
+<script type="text/javascript">
+
+window.onload = function() {
+    var recaptchas = [].slice.call(document.querySelectorAll(".g-recaptcha"));
+
+    var recaptchaObserver = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            var lazyCaptcha = entry.target;
+            var script = document.createElement('script');
+            script.src = "https://{{ recaptcha_domain }}/recaptcha/enterprise.js?render={{ public_key }}{% if api_params %}&{{ api_params }}{% endif %}?hl=" + document.documentElement.lang;
+            document.body.appendChild(script);
+            recaptchaObserver.unobserve(lazyCaptcha);
+        }
+    });
+    }, { rootMargin: "100px", threshold: 0 });
+
+        recaptchas.forEach(function (lazyCaptcha) {
+        recaptchaObserver.observe(lazyCaptcha);
+    });    
+    
+    grecaptcha.enterprise.ready(function() {
+        grecaptcha.enterprise.execute('{{ public_key }}', {action: 'form'})
+        .then(function(token) {
+            console.log("reCAPTCHA validated for 'data-widget-uuid=\"{{ widget_uuid }}\"'. Setting input value...")
+            var element = document.querySelector('.g-recaptcha[data-widget-uuid="{{ widget_uuid }}"]');
+            element.value = token;
+        });
+    });
+}
+</script>
