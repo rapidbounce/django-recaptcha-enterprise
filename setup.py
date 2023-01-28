@@ -9,15 +9,15 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 install_requirements = [
     "django>=1.0",
-    "google-cloud-recaptcha-enterprise==1.8.0"
-    "grpcio>=1.51"
-    "protobuf==3.20.1"
+    "google-cloud-recaptcha-enterprise==1.8.0",
+    "grpcio>=1.51",
+    "protobuf==3.20.1",
 
 ]
 
 setup(
     name='django-recaptcha-enterprise',
-    version='0.0.10',
+    version='0.0.11',
     packages=find_packages(),
     install_requires=install_requirements,
     include_package_data=True,
