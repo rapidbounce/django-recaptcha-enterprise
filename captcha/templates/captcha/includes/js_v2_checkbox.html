@@ -14,7 +14,6 @@
                     // Submit function to be called, after reCAPTCHA was successful.
                     window.onSubmit_{{ widget_uuid }} = function(token) {
                         console.log("reCAPTCHA validated for 'data-widget-uuid=\"{{ widget_uuid }}\"'. Submitting form...")
-                        document.querySelector('.g-recaptcha[data-widget-uuid="{{ widget_uuid }}"]').closest('form').submit();
                     }
               }
           });
